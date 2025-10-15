@@ -1,27 +1,28 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Raleway } from "next/font/google";
 
-const manrope = Manrope({
-  subsets: ["latin"],
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
   display: "swap",
-  variable: "--font-manrope"
+  variable: "--font-inter"
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
+const raleway = Raleway({
+  subsets: ["latin", "cyrillic"],
   display: "swap",
-  variable: "--font-clash"
+  variable: "--font-display"
 });
 
 export const metadata: Metadata = {
-  title: "GhostDesk — Умный второй мозг для ваших записей",
+  title: "GhostDesk — Невидимый AI-ассистент для разговоров",
   description:
-    "Записывайте встречи, извлекайте инсайты и делитесь важным с командой. GhostDesk помогает превратить разговоры в знания и действия.",
+    "Реал-тайм транскрибация, подсказки и пост-аналитика встреч. GhostDesk работает поверх любых приложений и помогает говорить уверенно.",
+  metadataBase: new URL("https://ghostdesk.app"),
   openGraph: {
-    title: "GhostDesk",
+    title: "GhostDesk — Невидимый AI-ассистент для разговоров",
     description:
-      "Записывайте встречи, извлекайте инсайты и делитесь важным с командой. GhostDesk — ваш второй мозг.",
+      "Реал-тайм транскрибация, подсказки и пост-аналитика встреч. GhostDesk работает поверх любых приложений.",
     url: "https://ghostdesk.app",
     siteName: "GhostDesk",
     images: [
@@ -35,14 +36,17 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     type: "website"
   },
-  metadataBase: new URL("https://ghostdesk.app"),
   twitter: {
     card: "summary_large_image",
-    title: "GhostDesk — Второй мозг для ваших записей",
+    title: "GhostDesk — Невидимый AI-ассистент для разговоров",
     description:
-      "Автоматические транскрипты, инсайты и поиск по всем звонкам и лекциям. Попробуйте GhostDesk.",
+      "Говорите свободно. GhostDesk транскрибирует, подсказывает и сохраняет встречи в умный архив.",
     creator: "@ghostdesk"
   }
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B0B0F"
 };
 
 export default function RootLayout({
@@ -51,8 +55,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${jakarta.variable}`}>
-      <body className="font-sans bg-slate-950 text-slate-100">
+    <html lang="ru" className={`${inter.variable} ${raleway.variable}`} suppressHydrationWarning>
+      <body className="font-sans bg-background text-foreground antialiased">
         {children}
       </body>
     </html>

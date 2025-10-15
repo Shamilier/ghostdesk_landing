@@ -1,41 +1,65 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./content/**/*.{md,mdx}", "./data/**/*.{ts,tsx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./content/**/*.{md,mdx}",
+    "./data/**/*.{ts,tsx}"
+  ],
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: "#f2f9ff",
-          100: "#e2f0ff",
-          200: "#b9dbff",
-          300: "#82c0ff",
-          400: "#54a5ff",
-          500: "#2a8aff",
-          600: "#176ce6",
-          700: "#1254b4",
-          800: "#114794",
-          900: "#123c78"
-        },
+        background: "var(--color-bg)",
+        foreground: "var(--color-fg)",
+        muted: "var(--color-muted)",
         accent: {
-          500: "#7d5aff",
-          600: "#5f3bff"
+          DEFAULT: "#5B8CFF",
+          500: "#5B8CFF"
+        },
+        purple: {
+          500: "#A06AFF"
         }
       },
       backgroundImage: {
-        "hero-gradient": "radial-gradient(circle at top left, rgba(45,160,255,0.35), transparent 55%), radial-gradient(circle at top right, rgba(125,90,255,0.35), transparent 45%)",
-        "card-gradient": "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02))"
+        "noise-texture": "var(--noise-image)",
+        "accent-gradient": "linear-gradient(90deg, #5B8CFF 0%, #A06AFF 100%)",
+        "hero-radial": "radial-gradient(circle at top left, rgba(91,140,255,0.35), transparent 55%), radial-gradient(circle at top right, rgba(160,106,255,0.35), transparent 55%), radial-gradient(circle at bottom, rgba(64,115,255,0.18), transparent 65%)"
       },
       borderRadius: {
-        xl: "1.25rem"
+        xl: "1.25rem",
+        "2xl": "1.75rem",
+        "3xl": "2.5rem"
       },
       boxShadow: {
-        glow: "0 0 60px rgba(42, 138, 255, 0.35)",
-        subtle: "0 20px 60px -30px rgba(15, 23, 42, 0.5)"
+        glass: "0 25px 70px -35px rgba(8,10,25,0.8)",
+        glow: "0 0 40px rgba(112,118,255,0.35)",
+        "inner-glow": "inset 0 1px 0 0 rgba(255,255,255,0.25)"
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(0, -12px, 0)" }
+        },
+        pulseGlow: {
+          "0%, 100%": { opacity: "0.65" },
+          "50%": { opacity: "0.95" }
+        }
+      },
+      animation: {
+        float: "float 12s ease-in-out infinite",
+        "float-slow": "float 18s ease-in-out infinite",
+        "pulse-glow": "pulseGlow 6s ease-in-out infinite"
       },
       fontFamily: {
-        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
-        display: ["var(--font-clash)", "var(--font-manrope)", "system-ui", "sans-serif"]
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-inter)", "system-ui", "sans-serif"]
+      },
+      spacing: {
+        18: "4.5rem"
+      },
+      blur: {
+        18: "18px"
       }
     }
   },
