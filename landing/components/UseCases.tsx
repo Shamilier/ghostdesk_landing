@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   BriefcaseBusiness,
   FileText,
@@ -9,6 +9,7 @@ import {
   LifeBuoy,
   UsersRound
 } from "lucide-react";
+import { useRef } from "react";
 import { GlassCard } from "./GlassCard";
 
 const USE_CASES = [
@@ -45,8 +46,23 @@ const USE_CASES = [
 ];
 
 export function UseCases() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const stripeX = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const stripeOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0.15, 0.5, 0.3]);
+
   return (
-    <section id="use-cases" className="relative mx-auto mt-28 w-full max-w-6xl px-4 sm:px-6">
+    <section
+      ref={sectionRef}
+      id="use-cases"
+      className="relative mx-auto mt-28 w-full max-w-6xl overflow-hidden px-4 sm:px-6"
+    >
+      <motion.div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ opacity: stripeOpacity }}>
+        <motion.div
+          className="absolute -left-1/4 top-1/4 h-[520px] w-[150%] skew-y-6 bg-[linear-gradient(120deg,rgba(91,140,255,0.1)_0%,rgba(160,106,255,0.16)_35%,rgba(91,229,255,0.12)_70%,transparent_95%)] blur-[120px]"
+          style={{ x: stripeX }}
+        />
+      </motion.div>
       <div className="mx-auto max-w-3xl text-center">
         <motion.span
           className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60"
@@ -78,6 +94,7 @@ export function UseCases() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ delay: index * 0.05, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                whileHover={{ y: -6 }}
               >
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-white">
                   <Icon className="h-5 w-5" />

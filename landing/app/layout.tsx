@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Raleway } from "next/font/google";
+import { ScrollBackdrop } from "@/components/ScrollBackdrop";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -57,6 +59,8 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${inter.variable} ${raleway.variable}`} suppressHydrationWarning>
       <body className="font-sans bg-background text-foreground antialiased">
+        <ScrollBackdrop />
+        <ScrollProgress />
         {children}
       </body>
     </html>

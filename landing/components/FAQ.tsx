@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const FAQ_ITEMS = [
   {
@@ -39,9 +39,22 @@ const FAQ_ITEMS = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const beamOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.35, 0.15]);
+  const beamY = useTransform(scrollYProgress, [0, 1], ["-12%", "18%"]);
 
   return (
-    <section id="faq" className="relative mx-auto mt-32 w-full max-w-5xl px-4 sm:px-6">
+    <section
+      ref={sectionRef}
+      id="faq"
+      className="relative mx-auto mt-32 w-full max-w-5xl overflow-hidden px-4 sm:px-6"
+    >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[600px] w-[120%] -translate-x-1/2 bg-[radial-gradient(circle_at_50%_0%,rgba(160,106,255,0.25),transparent_65%)] blur-[110px]"
+        style={{ opacity: beamOpacity, y: beamY }}
+      />
       <div className="mx-auto max-w-3xl text-center">
         <motion.span
           className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60"

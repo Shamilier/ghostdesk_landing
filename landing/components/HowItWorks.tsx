@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Cable, Laptop2, MessagesSquare, PenTool } from "lucide-react";
 import { GlassCard } from "./GlassCard";
+import { useRef } from "react";
 
 const STEPS = [
   {
@@ -28,8 +29,27 @@ const STEPS = [
 ];
 
 export function HowItWorks() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const connectorScale = useTransform(scrollYProgress, [0, 1], [0.65, 1.05]);
+  const connectorOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0, 0.4, 0.8]);
+
   return (
-    <section id="how" className="relative mx-auto mt-28 w-full max-w-6xl px-4 sm:px-6">
+    <section
+      ref={sectionRef}
+      id="how"
+      className="relative mx-auto mt-28 w-full max-w-6xl overflow-hidden px-4 sm:px-6"
+    >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
+        style={{
+          scale: connectorScale,
+          opacity: connectorOpacity,
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08), rgba(16,17,35,0.0) 65%)"
+        }}
+      />
       <div className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:items-center">
         <div>
           <motion.span

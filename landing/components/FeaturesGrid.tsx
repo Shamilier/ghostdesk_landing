@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   AudioLines,
   Ear,
@@ -10,6 +10,7 @@ import {
   Workflow
 } from "lucide-react";
 import { GlassCard } from "./GlassCard";
+import { useRef } from "react";
 
 const FEATURES = [
   {
@@ -45,8 +46,25 @@ const FEATURES = [
 ];
 
 export function FeaturesGrid() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  const glowY = useTransform(scrollYProgress, [0, 1], ["-18%", "16%"]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0.2, 0.75, 0.4]);
+
   return (
-    <section id="features" className="relative mx-auto mt-24 w-full max-w-6xl px-4 sm:px-6">
+    <section
+      ref={sectionRef}
+      id="features"
+      className="relative mx-auto mt-24 w-full max-w-6xl overflow-hidden px-4 sm:px-6"
+    >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -left-1/3 top-1/2 -z-10 h-[520px] w-[140%] rotate-[3deg] rounded-[50%] bg-[radial-gradient(circle_at_20%_20%,rgba(91,140,255,0.45),transparent_65%),radial-gradient(circle_at_80%_20%,rgba(160,106,255,0.35),transparent_60%)] blur-[120px]"
+        style={{ y: glowY, opacity: glowOpacity }}
+      />
       <div className="mx-auto max-w-3xl text-center">
         <motion.span
           className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60"

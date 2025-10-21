@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Check } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { GlassCard } from "./GlassCard";
 
 const PLANS = [
@@ -55,9 +55,22 @@ const PLANS = [
 export function Pricing() {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const haloScale = useTransform(scrollYProgress, [0, 1], [0.8, 1.1]);
+  const haloOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0, 0.45, 0.2]);
 
   return (
-    <section id="pricing" className="relative mx-auto mt-32 w-full max-w-6xl px-4 sm:px-6">
+    <section
+      ref={sectionRef}
+      id="pricing"
+      className="relative mx-auto mt-32 w-full max-w-6xl overflow-hidden px-4 sm:px-6"
+    >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-[38%] -z-10 h-[720px] w-[720px] -translate-x-1/2 rounded-full bg-[conic-gradient(from_120deg_at_50%_50%,rgba(91,140,255,0.25),rgba(160,106,255,0.2),rgba(91,229,255,0.22),rgba(91,140,255,0.25))] blur-[160px]"
+        style={{ scale: haloScale, opacity: haloOpacity }}
+      />
       <div className="mx-auto max-w-3xl text-center">
         <motion.span
           className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60"
