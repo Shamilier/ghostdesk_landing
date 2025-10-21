@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Menu, X } from "lucide-react";
 
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 const NAV_LINKS = [
   { label: "Возможности", href: "#features" },
   { label: "Как работает", href: "#how" },
@@ -76,9 +78,14 @@ export function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         style={{
-          background: isScrolled ? "rgba(18, 20, 36, 0.82)" : "rgba(18, 20, 36, 0.6)",
-          borderColor: "rgba(255,255,255,0.14)",
-          boxShadow: isScrolled ? "0 18px 50px -28px rgba(4,8,24,0.85)" : "0 12px 40px -32px rgba(4,8,24,0.65)"
+          backgroundColor: "var(--color-bg-soft)",
+          background: isScrolled
+            ? "color-mix(in srgb, var(--color-bg-soft) 92%, transparent)"
+            : "color-mix(in srgb, var(--color-bg-soft) 78%, transparent)",
+          borderColor: "var(--surface-border)",
+          boxShadow: isScrolled
+            ? "var(--shadow-elevated)"
+            : "var(--shadow-floating)"
         }}
       >
         <Link href="#hero" className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.32em] text-white/80">
@@ -108,28 +115,31 @@ export function Navbar() {
             </Link>
           ))}
         </div>
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            href="#pricing"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition hover:border-white/35 hover:text-white"
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <div className="hidden items-center gap-3 lg:flex">
+            <Link
+              href="#pricing"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition hover:border-white/35 hover:text-white"
+            >
+              Смотреть демо
+            </Link>
+            <Link
+              href="#cta"
+              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-glow transition duration-300 hover:bg-white/20"
+            >
+              Попробовать бесплатно
+            </Link>
+          </div>
+          <button
+            type="button"
+            aria-label="Открыть меню"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
+            onClick={toggleMenu}
           >
-            Смотреть демо
-          </Link>
-          <Link
-            href="#cta"
-            className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-glow transition duration-300 hover:bg-white/20"
-          >
-            Попробовать бесплатно
-          </Link>
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
         </div>
-        <button
-          type="button"
-          aria-label="Открыть меню"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
-          onClick={toggleMenu}
-        >
-          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -137,8 +147,12 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: "easeOut" }}
-              className="absolute right-0 top-full mt-4 w-full min-w-[240px] rounded-3xl border border-white/10 bg-[#111321]/95 p-4 shadow-glow lg:hidden"
+              className="absolute right-0 top-full mt-4 w-full min-w-[240px] rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow lg:hidden"
             >
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs font-medium uppercase tracking-[0.22em] text-white/60">Навигация</span>
+                <ThemeToggle />
+              </div>
               <div className="flex flex-col gap-2 text-sm text-white/80">
                 {NAV_LINKS.map(link => (
                   <Link

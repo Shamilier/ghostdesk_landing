@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Raleway } from "next/font/google";
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
   display: "swap",
@@ -55,9 +57,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${inter.variable} ${raleway.variable}`} suppressHydrationWarning>
+    <html lang="ru" data-theme="dark" className={`${inter.variable} ${raleway.variable}`} suppressHydrationWarning>
       <body className="font-sans bg-background text-foreground antialiased">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

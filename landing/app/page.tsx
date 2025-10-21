@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="relative flex flex-col gap-20 pb-24">
+      <main className="relative flex flex-col gap-24 pb-24">
         <Hero />
         <SocialProof />
         <FeaturesGrid />

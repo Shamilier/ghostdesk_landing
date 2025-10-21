@@ -1,15 +1,33 @@
 "use client";
 
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { useCallback, useMemo } from "react";
 
 const HERO_BENEFITS = [
-  "Реал-тайм: транскрибация и подсказки без задержек",
-  "Невидимый слой: поверх любых приложений и вкладок",
-  "Пост-аналитика: итоги, тезисы, задачи, инсайты",
-  "Архив: поиск по встречам, темам, людям",
-  "Конфиденциальность: локальные фильтры, контроль источников"
+  "Транскрибация и подсказки без задержек",
+  "Работает поверх любых приложений и вкладок",
+  "Итоги, задачи и инсайты сразу после созвона",
+  "Поиск по встречам, темам и участникам",
+  "Локальные фильтры и контроль источников"
+];
+
+const HERO_METRICS = [
+  {
+    value: "< 5 мин",
+    label: "до полной настройки",
+    description: "Подключаете микрофон, выбираете язык и всё."
+  },
+  {
+    value: "92%",
+    label: "рутины закрываем сами",
+    description: "Фиксируем follow-up, вносим CRM-поля, шлём резюме."
+  },
+  {
+    value: "3 клика",
+    label: "чтобы делиться итогами",
+    description: "Готовые шаблоны письма, Notion и Slack."
+  }
 ];
 
 const heroVariants = {
@@ -52,8 +70,8 @@ function MagneticButton({ href, variant, children, icon, className }: MagneticBu
   const baseClasses = useMemo(
     () =>
       variant === "primary"
-        ? "btn-primary group text-[0.7rem] sm:text-xs"
-        : "btn-secondary group text-[0.7rem] sm:text-xs",
+        ? "btn-primary group px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] sm:text-base"
+        : "btn-secondary group px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] sm:text-base",
     [variant]
   );
 
@@ -137,74 +155,109 @@ export function Hero() {
           </g>
         </motion.svg>
       </div>
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 text-center sm:px-6">
-        <motion.span
-          className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-white/70"
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-4 sm:px-6">
+        <motion.div
+          className="inline-flex items-center gap-3 self-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-medium uppercase tracking-[0.32em] text-white/70 sm:self-start"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.1, duration: 0.6, ease: [0.45, 0, 0.2, 1] }}
         >
           Невидимый слой для разговоров
-        </motion.span>
-        <motion.h1
-          className="mt-8 max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.2, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-        >
-          Говорите свободно. Остальное — сделает AI
-        </motion.h1>
-        <motion.p
-          className="mt-6 max-w-3xl text-base text-white/70 sm:text-lg"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.35, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-        >
-          GhostDesk в реальном времени слышит звук и вас, понимает контекст, шепчет подсказки и сохраняет встречу в умный архив.
-        </motion.p>
-        <motion.div
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
-          variants={heroVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.45, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-        >
-          <MagneticButton
-            href="#cta"
-            variant="primary"
-            icon={<ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />}
-          >
-            Попробовать бесплатно
-          </MagneticButton>
-          <MagneticButton
-            href="#how"
-            variant="secondary"
-            className="backdrop-blur-xl"
-            icon={<Play className="h-3.5 w-3.5" />}
-          >
-            Смотреть демо
-          </MagneticButton>
         </motion.div>
-        <motion.ul
-          className="mt-12 grid w-full max-w-4xl grid-cols-1 gap-3 text-left text-sm text-white/60 sm:grid-cols-2"
-          initial="hidden"
-          animate="visible"
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
-        >
-          {HERO_BENEFITS.map(benefit => (
-            <motion.li
-              key={benefit}
-              variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
-              className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl"
+        <div className="grid gap-12 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
+          <div className="space-y-8 text-left">
+            <motion.h1
+              className="text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl"
+              variants={heroVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
             >
-              <span className="mt-1 inline-flex h-2.5 w-2.5 flex-none rounded-full bg-gradient-to-r from-[#5b8cff] to-[#a06aff]" />
-              <span>{benefit}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
+              Говорите свободно. <span className="text-white/70">Остальное — сделает AI</span>
+            </motion.h1>
+            <motion.p
+              className="text-base text-white/70 sm:text-lg"
+              variants={heroVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.35, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            >
+              GhostDesk в реальном времени слышит звук и вас, понимает контекст, шепчет подсказки и сохраняет встречу в умный архив. Структура страницы разделяет информацию на блоки, чтобы ничто не отвлекало от разговора.
+            </motion.p>
+            <motion.div
+              className="flex flex-col items-start gap-4 sm:flex-row"
+              variants={heroVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.45, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <MagneticButton
+                href="#cta"
+                variant="primary"
+                icon={<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />}
+              >
+                Попробовать бесплатно
+              </MagneticButton>
+              <MagneticButton
+                href="#how"
+                variant="secondary"
+                className="backdrop-blur-xl"
+                icon={<Play className="h-4 w-4" />}
+              >
+                Смотреть демо
+              </MagneticButton>
+            </motion.div>
+            <motion.div
+              className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <Sparkles className="h-4 w-4" />
+              14 дней бесплатно + -18% при годовой подписке
+            </motion.div>
+          </div>
+          <motion.div
+            className="glass space-y-5 rounded-3xl border border-white/10 bg-white/5 p-5 text-left sm:p-6 lg:max-w-md lg:justify-self-end"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <div className="space-y-2">
+              <h2 className="text-lg font-semibold text-white">Что получите с первого запуска</h2>
+              <p className="text-sm text-white/70">
+                GhostDesk сразу показывает ценность: экономит время на заметки, фиксирует договорённости и подсказывает, что сказать дальше.
+              </p>
+            </div>
+            <dl className="grid gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 sm:grid-cols-3">
+              {HERO_METRICS.map(metric => (
+                <div key={metric.label} className="flex flex-col gap-1">
+                  <dt className="order-2 text-xs uppercase tracking-[0.22em] text-white/60">{metric.label}</dt>
+                  <dd className="order-1 text-lg font-semibold text-white">{metric.value}</dd>
+                  <dd className="order-3 text-[11px] leading-relaxed text-white/60">{metric.description}</dd>
+                </div>
+              ))}
+            </dl>
+            <motion.ul
+              className="grid gap-2.5 text-left text-sm text-white/70"
+              initial="hidden"
+              animate="visible"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+            >
+              {HERO_BENEFITS.map(benefit => (
+                <motion.li
+                  key={benefit}
+                  variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
+                >
+                  <span className="mt-1 inline-flex h-2.5 w-2.5 flex-none rounded-full bg-gradient-to-r from-[#5b8cff] to-[#a06aff]" />
+                  <span>{benefit}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
