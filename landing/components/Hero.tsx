@@ -219,7 +219,7 @@ export function Hero() {
             </motion.div>
           </div>
           <motion.div
-            className="glass space-y-5 rounded-3xl border border-white/10 bg-white/5 p-5 text-left sm:p-6 lg:max-w-md lg:justify-self-end"
+            className="glass space-y-6 rounded-3xl border border-white/10 bg-white/5 p-6 text-left"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
@@ -227,20 +227,11 @@ export function Hero() {
             <div className="space-y-2">
               <h2 className="text-lg font-semibold text-white">Что получите с первого запуска</h2>
               <p className="text-sm text-white/70">
-                GhostDesk сразу показывает ценность: экономит время на заметки, фиксирует договорённости и подсказывает, что сказать дальше.
+                Блоки ниже разбивают возможности на короткие карточки, чтобы не перегружать экран. Выбирайте только то, что нужно.
               </p>
             </div>
-            <dl className="grid gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 sm:grid-cols-3">
-              {HERO_METRICS.map(metric => (
-                <div key={metric.label} className="flex flex-col gap-1">
-                  <dt className="order-2 text-xs uppercase tracking-[0.22em] text-white/60">{metric.label}</dt>
-                  <dd className="order-1 text-lg font-semibold text-white">{metric.value}</dd>
-                  <dd className="order-3 text-[11px] leading-relaxed text-white/60">{metric.description}</dd>
-                </div>
-              ))}
-            </dl>
             <motion.ul
-              className="grid gap-2.5 text-left text-sm text-white/70"
+              className="grid gap-3 text-left text-sm text-white/70 sm:grid-cols-1"
               initial="hidden"
               animate="visible"
               variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
