@@ -4,7 +4,8 @@ import clsx from "clsx";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, MoonStar, SunMedium, X } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const NAV_LINKS = [
   { label: "Возможности", href: "#features" },
@@ -19,6 +20,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const shouldReduceMotion = useReducedMotion();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,8 +59,17 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const toggleMenu = useCallback(() => setIsOpen(prev => !prev), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
+
+  const handleThemeSwitch = useCallback(() => {
+    if (!isMounted) return;
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [isMounted, resolvedTheme, setTheme]);
 
   const activeHref = useMemo(() => {
     if (activeSection === "hero") return "";
@@ -76,16 +88,26 @@ export function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         style={{
-          background: isScrolled ? "rgba(18, 20, 36, 0.82)" : "rgba(18, 20, 36, 0.6)",
-          borderColor: "rgba(255,255,255,0.14)",
-          boxShadow: isScrolled ? "0 18px 50px -28px rgba(4,8,24,0.85)" : "0 12px 40px -32px rgba(4,8,24,0.65)"
+          background: isScrolled
+            ? "color-mix(in srgb, var(--surface-elevated) 94%, transparent)"
+            : "color-mix(in srgb, var(--surface-glass) 88%, transparent)",
+          borderColor: "var(--surface-border)",
+          boxShadow: isScrolled ? "var(--shadow-strong)" : "var(--shadow-soft)"
         }}
       >
-        <Link href="#hero" className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.32em] text-white/80">
-          <span className="h-2 w-2 rounded-full bg-white" aria-hidden="true" />
+        <Link
+          href="#hero"
+          className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.32em] text-foreground/80"
+        >
+          <span
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--accent-gradient)] text-[0.7rem] font-semibold text-white shadow-lg shadow-[rgba(91,140,255,0.35)]"
+            aria-hidden="true"
+          >
+            Gd
+          </span>
           GhostDesk
         </Link>
-        <div className="hidden items-center gap-8 text-sm font-medium text-white/70 lg:flex">
+        <div className="hidden items-center gap-8 text-sm font-medium text-foreground/70 lg:flex">
           {NAV_LINKS.map(link => (
             <Link
               key={link.href}
@@ -93,14 +115,14 @@ export function Navbar() {
               className={clsx(
                 "relative px-1 py-1 transition-colors",
                 activeHref === link.href
-                  ? "text-white"
-                  : "text-white/70 hover:text-white"
+                  ? "text-foreground"
+                  : "text-foreground/70 hover:text-foreground"
               )}
             >
               {link.label}
               <motion.span
                 layoutId="nav-underline"
-                className="absolute inset-x-1 bottom-0 h-px rounded-full bg-white/70"
+                className="absolute inset-x-1 bottom-0 h-px rounded-full bg-foreground/40"
                 initial={false}
                 animate={{ opacity: activeHref === link.href ? 1 : 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -109,15 +131,25 @@ export function Navbar() {
           ))}
         </div>
         <div className="hidden items-center gap-3 lg:flex">
+          {isMounted && (
+            <button
+              type="button"
+              onClick={handleThemeSwitch}
+              aria-label="Переключить тему"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--surface-border)] bg-transparent text-foreground/80 transition hover:text-foreground"
+            >
+              {resolvedTheme === "dark" ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
+            </button>
+          )}
           <Link
             href="#pricing"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition hover:border-white/35 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-elevated)_82%,transparent)] px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-foreground/75 transition hover:border-[var(--surface-border-strong)] hover:text-foreground"
           >
             Смотреть демо
           </Link>
           <Link
             href="#cta"
-            className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-glow transition duration-300 hover:bg-white/20"
+            className="btn-primary inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white"
           >
             Попробовать бесплатно
           </Link>
@@ -125,7 +157,7 @@ export function Navbar() {
         <button
           type="button"
           aria-label="Открыть меню"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-glass)_82%,transparent)] text-foreground lg:hidden"
           onClick={toggleMenu}
         >
           {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -137,21 +169,33 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: "easeOut" }}
-              className="absolute right-0 top-full mt-4 w-full min-w-[240px] rounded-3xl border border-white/10 bg-[#111321]/95 p-4 shadow-glow lg:hidden"
+              className="absolute right-0 top-full mt-4 w-full min-w-[240px] rounded-3xl border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-elevated)_95%,transparent)] p-4 shadow-xl shadow-[color:rgba(22,30,86,0.12)] backdrop-blur-2xl dark:shadow-[rgba(4,8,24,0.55)] lg:hidden"
             >
-              <div className="flex flex-col gap-2 text-sm text-white/80">
+              <div className="flex flex-col gap-2 text-sm text-foreground/80">
                 {NAV_LINKS.map(link => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={closeMenu}
-                    className="rounded-xl px-3 py-2 transition hover:bg-white/10 hover:text-white"
+                    className="rounded-xl px-3 py-2 transition hover:bg-[color-mix(in_srgb,var(--surface-glass)_85%,transparent)] hover:text-foreground"
                   >
                     {link.label}
                   </Link>
                 ))}
               </div>
               <div className="mt-4 flex flex-col gap-2">
+                {isMounted && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleThemeSwitch();
+                    }}
+                    className="flex items-center justify-between rounded-2xl border border-[var(--surface-border)] bg-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/80"
+                  >
+                    Тема
+                    {resolvedTheme === "dark" ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
+                  </button>
+                )}
                 <Link
                   href="#pricing"
                   onClick={closeMenu}

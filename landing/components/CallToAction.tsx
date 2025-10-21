@@ -14,12 +14,12 @@ export function CallToAction() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       >
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent-gradient blur-3xl opacity-60" aria-hidden />
-        <div className="absolute -bottom-32 -left-32 h-72 w-72 rounded-full bg-[#a06aff] blur-3xl opacity-50" aria-hidden />
+        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--accent-gradient)] blur-3xl opacity-60" aria-hidden />
+        <div className="absolute -bottom-32 -left-32 h-72 w-72 rounded-full bg-[rgba(160,106,255,0.6)] blur-3xl opacity-40" aria-hidden />
         <div className="relative z-10 grid gap-8 lg:grid-cols-[1.1fr,auto] lg:items-center">
           <div className="space-y-4">
-            <h2 className="text-3xl font-semibold text-white sm:text-4xl">Готовы говорить уверенно?</h2>
-            <p className="text-base text-white/70">
+            <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">Готовы говорить уверенно?</h2>
+            <p className="text-base text-muted">
               Запустите GhostDesk бесплатно, подключите любимые сервисы и почувствуйте, как AI держит весь контекст разговора.
             </p>
           </div>

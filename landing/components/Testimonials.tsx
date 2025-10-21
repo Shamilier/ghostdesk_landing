@@ -47,10 +47,10 @@ export function Testimonials() {
     <section className="relative mx-auto mt-28 w-full max-w-5xl px-4 sm:px-6">
       <GlassCard className="overflow-hidden p-0">
         <div className="grid gap-0 md:grid-cols-[1.1fr,0.9fr]">
-          <div className="relative border-b border-white/10 p-8 md:border-b-0 md:border-r">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 opacity-40" aria-hidden />
+          <div className="relative border-b border-[var(--surface-border)] p-8 md:border-b-0 md:border-r">
+            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(91,140,255,0.12)] via-transparent to-[rgba(160,106,255,0.12)] opacity-50" aria-hidden />
             <div className="relative z-10">
-              <span className="text-xs font-semibold uppercase tracking-[0.32em] text-white/50">Отзывы</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.32em] text-foreground/60">Отзывы</span>
               <AnimatePresence mode="wait">
                 <motion.blockquote
                   key={active.quote}
@@ -58,7 +58,7 @@ export function Testimonials() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                  className="mt-6 text-lg text-white/85 sm:text-xl"
+                  className="mt-6 text-lg text-foreground/90 sm:text-xl"
                 >
                   “{active.quote}”
                 </motion.blockquote>
@@ -76,11 +76,13 @@ export function Testimonials() {
                   onMouseEnter={() => setIndex(i)}
                   onFocus={() => setIndex(i)}
                   className={`group flex w-full flex-col items-start gap-1 rounded-2xl border border-transparent px-4 py-3 text-left transition ${
-                    index === i ? "border-white/30 bg-white/10" : "hover:border-white/20 hover:bg-white/5"
+                    index === i
+                      ? "border-[var(--surface-border-strong)] bg-[color-mix(in_srgb,var(--surface-glass)_80%,transparent)]"
+                      : "hover:border-[var(--surface-border)] hover:bg-[color-mix(in_srgb,var(--surface-glass)_65%,transparent)]"
                   }`}
                 >
-                  <span className="text-sm font-medium text-white/80 group-hover:text-white">{testimonial.name}</span>
-                  <span className="text-xs uppercase tracking-[0.2em] text-white/40">{testimonial.role}</span>
+                  <span className="text-sm font-medium text-foreground/85 group-hover:text-foreground">{testimonial.name}</span>
+                  <span className="text-xs uppercase tracking-[0.2em] text-foreground/45">{testimonial.role}</span>
                 </button>
               ))}
             </div>
@@ -91,7 +93,7 @@ export function Testimonials() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/60"
+                className="rounded-2xl border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-glass)_80%,transparent)] px-4 py-3 text-xs uppercase tracking-[0.28em] text-foreground/60"
               >
                 {active.metric}
               </motion.div>

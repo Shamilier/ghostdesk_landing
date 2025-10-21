@@ -33,7 +33,7 @@ export function HowItWorks() {
       <div className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:items-center">
         <div>
           <motion.span
-            className="text-xs font-semibold uppercase tracking-[0.32em] text-white/60"
+            className="text-xs font-semibold uppercase tracking-[0.32em] text-foreground/60"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -42,7 +42,7 @@ export function HowItWorks() {
             Как это работает
           </motion.span>
           <motion.h2
-            className="mt-4 text-3xl font-semibold text-white sm:text-4xl"
+            className="mt-4 text-3xl font-semibold text-foreground sm:text-4xl"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -51,7 +51,7 @@ export function HowItWorks() {
             Включите GhostDesk один раз — и пусть он ведёт диалог вместе с вами
           </motion.h2>
           <motion.p
-            className="mt-4 text-base text-white/70"
+            className="mt-4 text-base text-muted"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -72,13 +72,13 @@ export function HowItWorks() {
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{ delay: index * 0.06, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--surface-glass)_70%,transparent)] text-foreground">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <div className="text-sm uppercase tracking-[0.3em] text-white/40">Шаг {index + 1}</div>
+                  <div className="text-sm uppercase tracking-[0.3em] text-foreground/40">Шаг {index + 1}</div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-                    <p className="mt-3 text-sm text-white/70">{step.description}</p>
+                    <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
+                    <p className="mt-3 text-sm text-muted">{step.description}</p>
                   </div>
                 </motion.div>
               </GlassCard>

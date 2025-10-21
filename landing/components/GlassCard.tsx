@@ -71,24 +71,24 @@ export function GlassCard({ className, children, glow }: GlassCardProps) {
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-60">
-        <div className="absolute inset-0 bg-accent-gradient blur-[60px]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[var(--accent-gradient)] blur-[60px]" aria-hidden="true" />
       </div>
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-30"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-40"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(circle at 20% 20%, rgba(91,140,255,0.35), transparent 55%), radial-gradient(circle at 80% 10%, rgba(160,106,255,0.35), transparent 55%)"
+            "radial-gradient(circle at 20% 20%, rgba(91,140,255,0.25), transparent 55%), radial-gradient(circle at 80% 10%, rgba(160,106,255,0.25), transparent 55%)"
         }}
       />
       {glow && (
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute -inset-px rounded-[inherit] bg-accent-gradient opacity-30 blur-2xl"
+          className="pointer-events-none absolute -inset-px rounded-[inherit] bg-[var(--accent-gradient)] opacity-30 blur-2xl"
           style={{ opacity: shouldReduceMotion ? 0.28 : glowOpacity }}
         />
       )}
-      <div className="relative z-10 space-y-4 text-left text-sm text-white/80 sm:text-base">{children}</div>
+      <div className="relative z-10 space-y-4 text-left text-sm text-foreground/85 sm:text-base">{children}</div>
     </motion.div>
   );
 }

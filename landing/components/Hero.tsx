@@ -139,7 +139,7 @@ export function Hero() {
       </div>
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 text-center sm:px-6">
         <motion.span
-          className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-white/70"
+          className="inline-flex items-center gap-3 rounded-full border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-elevated)_70%,transparent)] px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-foreground/65"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
@@ -148,7 +148,7 @@ export function Hero() {
           Невидимый слой для разговоров
         </motion.span>
         <motion.h1
-          className="mt-8 max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl"
+          className="mt-8 max-w-4xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl md:text-6xl"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
@@ -157,7 +157,7 @@ export function Hero() {
           Говорите свободно. Остальное — сделает AI
         </motion.h1>
         <motion.p
-          className="mt-6 max-w-3xl text-base text-white/70 sm:text-lg"
+          className="mt-6 max-w-3xl text-base text-muted sm:text-lg"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
@@ -189,7 +189,7 @@ export function Hero() {
           </MagneticButton>
         </motion.div>
         <motion.ul
-          className="mt-12 grid w-full max-w-4xl grid-cols-1 gap-3 text-left text-sm text-white/60 sm:grid-cols-2"
+          className="mt-12 grid w-full max-w-4xl grid-cols-1 gap-3 text-left text-sm text-muted sm:grid-cols-2"
           initial="hidden"
           animate="visible"
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
@@ -198,10 +198,10 @@ export function Hero() {
             <motion.li
               key={benefit}
               variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
-              className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl"
+              className="flex items-start gap-3 rounded-2xl border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-glass)_85%,transparent)] px-4 py-3 backdrop-blur-xl"
             >
-              <span className="mt-1 inline-flex h-2.5 w-2.5 flex-none rounded-full bg-gradient-to-r from-[#5b8cff] to-[#a06aff]" />
-              <span>{benefit}</span>
+              <span className="mt-1 inline-flex h-2.5 w-2.5 flex-none rounded-full bg-[var(--accent-gradient)]" />
+              <span className="text-foreground/90">{benefit}</span>
             </motion.li>
           ))}
         </motion.ul>

@@ -27,15 +27,15 @@ export function SocialProof() {
         {PROOF_ITEMS.map((item, index) => (
           <motion.div
             key={item.description}
-            className="glass relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-center"
+            className="glass relative overflow-hidden rounded-3xl border border-[var(--surface-border)] bg-[color-mix(in_srgb,var(--surface-glass)_85%,transparent)] p-6 text-center"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: index * 0.05, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="text-3xl font-semibold text-white sm:text-4xl">{item.value}</div>
-            <p className="mt-3 text-sm text-white/70 sm:text-base">{item.description}</p>
-            <p className="mt-4 text-xs uppercase tracking-[0.3em] text-white/40">{item.note}</p>
+            <div className="text-3xl font-semibold text-foreground sm:text-4xl">{item.value}</div>
+            <p className="mt-3 text-sm text-muted sm:text-base">{item.description}</p>
+            <p className="mt-4 text-xs uppercase tracking-[0.3em] text-foreground/40">{item.note}</p>
           </motion.div>
         ))}
       </div>
