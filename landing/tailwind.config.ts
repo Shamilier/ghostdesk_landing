@@ -44,12 +44,17 @@ const config: Config = {
         pulseGlow: {
           "0%, 100%": { opacity: "0.65" },
           "50%": { opacity: "0.95" }
+        },
+        pingSlow: {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "75%, 100%": { transform: "scale(2)", opacity: "0" }
         }
       },
       animation: {
         float: "float 12s ease-in-out infinite",
         "float-slow": "float 18s ease-in-out infinite",
-        "pulse-glow": "pulseGlow 6s ease-in-out infinite"
+        "pulse-glow": "pulseGlow 6s ease-in-out infinite",
+        "ping-slow": "pingSlow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite"
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],

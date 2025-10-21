@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { useCallback, useMemo } from "react";
+import { HeroShowcase } from "./HeroShowcase";
 
 const HERO_BENEFITS = [
   "Реал-тайм: транскрибация и подсказки без задержек",
@@ -205,6 +206,7 @@ export function Hero() {
             </motion.li>
           ))}
         </motion.ul>
+        <HeroShowcase />
       </div>
     </section>
   );
