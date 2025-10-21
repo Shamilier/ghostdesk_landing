@@ -136,7 +136,7 @@
   }
 
   .btn-primary {
-    @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-3 text-sm font-medium uppercase tracking-[0.08em] text-white transition duration-300 ease-out;
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300 ease-out;
   }
 
   .btn-primary::before {
@@ -171,6 +171,6 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white transition duration-300 ease-out hover:border-white/40;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300 ease-out hover:border-white/40;
   }
 }
