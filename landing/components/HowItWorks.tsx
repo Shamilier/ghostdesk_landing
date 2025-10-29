@@ -17,13 +17,13 @@ const STEPS = [
     icon: MessagesSquare
   },
   {
-    title: "После звонка",
-    description: "Авто-итоги, заметки, задачи и тайм-коды без ручной рутины.",
+    title: "Решение задач",
+    description: "Удобные сочетания клавиш помогают решать задачу прямо с экрана",
     icon: PenTool
   },
   {
-    title: "В архиве",
-    description: "Умный поиск, темы, участники и AI-анализ по запросу.",
+    title: "После звонка",
+    description: "Авто-итоги, заметки, задачи и тайм-коды без ручной рутины.",
     icon: Laptop2
   }
 ];
@@ -58,10 +58,10 @@ export function HowItWorks() {
                 Включите Ghost AI один раз — и ведите диалог <span className="text-white/80">вместе с AI</span>
               </>
             }
-            description="От подключения до архивирования — Ghost AI остаётся невидимым, но помогает на каждом шаге. Каждый этап оформлен отдельным блоком, поэтому вы всегда понимаете, что происходит."
+            description="От подключения до анализа — Ghost AI остаётся невидимым, но помогает на каждом шаге. Каждый этап показан отдельно, чтобы было понятно, как это работает."
             align="left"
           />
-          <div className="grid gap-5">
+          {/* <div className="grid gap-5">
             {SUPPORTING_POINTS.map((point, index) => (
               <motion.div
                 key={point.title}
@@ -75,8 +75,8 @@ export function HowItWorks() {
                 <p className="mt-2 text-sm leading-relaxed text-white/70">{point.copy}</p>
                 <p className="mt-3 text-sm font-medium text-white">{point.accent}</p>
               </motion.div>
-            ))}
-          </div>
+            ))} */}
+          {/* </div> */}
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {STEPS.map((step, index) => {

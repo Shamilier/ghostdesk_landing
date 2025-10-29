@@ -5,11 +5,10 @@ import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { useCallback, useMemo } from "react";
 
 const HERO_BENEFITS = [
-  "Реал-тайм: транскрибация и подсказки без задержек",
-  "Невидимый слой: поверх любых приложений и вкладок",
-  "Пост-аналитика: итоги, тезисы, задачи, инсайты",
-  "Архив: поиск по встречам, темам, людям",
-  "Конфиденциальность: локальные фильтры, контроль источников"
+  "Реал-тайм: транскрибация и подсказки без задержки",
+  "Удобство: поверх любых приложений и вкладок",
+  "Невидимка: не виден в звонах и демонстрации экрана",
+  "Мощность AI: лучшие модели ИИ прямо на рабочем столе"
 ];
 
 const heroVariants = {
@@ -165,8 +164,7 @@ export function Hero() {
               animate="visible"
               transition={{ delay: 0.35, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
             >
-              Ghost AI в реальном времени слышит звук и вас, понимает контекст, шепчет подсказки и сохраняет встречу в умный архив. Структура страницы разделяет информацию на блоки, чтобы ничто не отвлекало от разговора.
-            </motion.p>
+Невидимый AI-ассистент для разговоров. Ghost AI помогает слышать, понимать и действовать уверенно в каждом диалоге.            </motion.p>
             <motion.div
               className="flex flex-col items-start gap-4 sm:flex-row"
               variants={heroVariants}
@@ -197,7 +195,7 @@ export function Hero() {
               transition={{ delay: 0.55, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
             >
               <Sparkles className="h-4 w-4" />
-              14 дней бесплатно + -18% при годовой подписке
+              14 дней бесплатно
             </motion.div>
           </div>
           <motion.div
@@ -208,9 +206,9 @@ export function Hero() {
           >
             <div className="space-y-2">
               <h2 className="text-lg font-semibold text-white">Что получите с первого запуска</h2>
-              <p className="text-sm text-white/70">
+              {/* <p className="text-sm text-white/70">
                 Блоки ниже разбивают возможности на короткие карточки, чтобы не перегружать экран. Выбирайте только то, что нужно.
-              </p>
+              </p> */}
             </div>
             <motion.ul
               className="grid gap-3 text-left text-sm text-white/70 sm:grid-cols-1"

@@ -30,7 +30,7 @@ export function CallToAction() {
             <h2 className="text-3xl font-semibold text-white sm:text-4xl">Готовы говорить уверенно?</h2>
             <p className="text-base text-white/70 sm:text-lg">
               Запустите Ghost AI бесплатно, подключите любимые сервисы и почувствуйте, как AI держит весь контекст разговора.
-              В любой момент вы можете пригласить коллег и расширить план.
+              В любой момент вы можете пригласить друзей и расширить план.
             </p>
             <ul className="grid gap-3 text-sm text-white/70 sm:grid-cols-2">
               {CTA_POINTS.map(point => (

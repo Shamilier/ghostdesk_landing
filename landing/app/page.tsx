@@ -17,8 +17,8 @@ export default function Home() {
       <main className="relative flex flex-col gap-24 pb-24">
         <Hero />
         <SocialProof />
-        <FeaturesGrid />
         <HowItWorks />
+        <FeaturesGrid />
         <UseCases />
         <Testimonials />
         <Pricing />

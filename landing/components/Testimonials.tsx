@@ -7,7 +7,7 @@ import { GlassCard } from "./GlassCard";
 const TESTIMONIALS = [
   {
     quote:
-      "Ghost AI стал вторым мозгом на собеседованиях. Подсказки с примерными ответами и тайм-коды экономят часы подготовки.",
+      "Ghost AI стал вторым мозгом на собеседованиях. Подсказки с готовыми ответами и тайм-коды экономят часы подготовки.",
     name: "Анна Морозова",
     role: "Head of Operations, Nimbly",
     metric: "-47% времени на разбор звонков"
@@ -93,7 +93,7 @@ export function Testimonials() {
                 transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
                 className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/60"
               >
-                {active.metric}
+                {/* {active.metric} */}
               </motion.div>
             </AnimatePresence>
           </div>

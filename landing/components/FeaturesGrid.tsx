@@ -15,14 +15,14 @@ import { SectionHeading } from "./SectionHeading";
 const FEATURES = [
   {
     title: "Прослушивание системного звука",
-    highlight: "Слышит то, что слышите вы",
-    description: "софта, браузера, звонков и любых вкладок.",
+    highlight: "Слышит то, что слышите вы:",
+    description: "звонки из любых вкладок.",
     icon: Ear
   },
   {
     title: "Микрофон и речевые подсказки",
     highlight: "Понимает ваш голос",
-    description: "и шепчет релевантные фразы на лету.",
+    description: "и показывает релевантные подсказки на лету.",
     icon: Mic
   },
   {
@@ -40,7 +40,7 @@ const FEATURES = [
   {
     title: "AI-подсказки и шаблоны ответов",
     highlight: "Интервью, собеседования, продажи",
-    description: "— уверенные формулировки в один клик.",
+    description: "— верные ответы в один клик.",
     icon: Sparkles
   },
   {
@@ -57,7 +57,7 @@ export function FeaturesGrid() {
       <SectionHeading
         eyebrow="Возможности"
         title="Все, что нужно для ясных разговоров"
-        description="Ghost AI объединяет звук, экран и AI-подсказки в один невидимый слой. Каждый блок — отдельный инструмент, который работает автономно и не перегружает ваш экран."
+        description="Ghost AI анализирует звук и экран, генерирует мнговенные AI-подсказки. Каждый блок — отдельный инструмент, который работает автономно."
       />
       <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {FEATURES.map((feature, index) => {
